@@ -1,3 +1,4 @@
+import 'package:app_mercado_livre/widgets/card_produto.widget.dart';
 import 'package:app_mercado_livre/widgets/filtro_resultados.widget.dart';
 import 'package:app_mercado_livre/widgets/mercado_livre_appbar.widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,12 @@ class HomePage extends StatelessWidget {
         preferredSize: Size.fromHeight(100.0),
         child: MercadoLivreAppBar(),
       ),
-      body: Column(children: [FiltroResultados()]),
+      body: SingleChildScrollView(
+        child: Column(
+          spacing: 12,
+          children: [FiltroResultados(), CardProduto()],
+        ),
+      ),
     );
   }
 }
