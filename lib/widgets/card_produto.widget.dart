@@ -1,8 +1,11 @@
+import 'package:app_mercado_livre/models/produto.model.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/material.dart';
 
 class CardProduto extends StatelessWidget {
-  const CardProduto({super.key});
+  final Produto itemProduto;
+
+  const CardProduto({super.key, required this.itemProduto});
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +41,9 @@ class CardProduto extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "Apple Iphone 11 Pro (128gb) - Preto",
-                      style: TextStyle(
+                    Text(
+                      itemProduto.titulo,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                       ),
@@ -49,22 +52,23 @@ class CardProduto extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
 
-                    const Text(
-                      "R\$ 599,99",
-                      style: TextStyle(
+                    Text(
+                      "R\$ ${itemProduto.preco}",
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
 
                     RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         text: "em ",
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                         children: <TextSpan>[
                           TextSpan(
-                            text: "10x R\$ 60,00 sem juros",
-                            style: TextStyle(color: Colors.green),
+                            text:
+                                "10x R\$ ${itemProduto.valorParcelas} sem juros",
+                            style: const TextStyle(color: Colors.green),
                           ),
                         ],
                       ),
@@ -88,7 +92,7 @@ class CardProduto extends StatelessWidget {
                     const SizedBox(height: 8),
 
                     RatingBar.builder(
-                      initialRating: 5,
+                      initialRating: itemProduto.avaliacao,
                       minRating: 1,
                       direction: Axis.horizontal,
                       allowHalfRating: true,
