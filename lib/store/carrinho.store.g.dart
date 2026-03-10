@@ -41,7 +41,7 @@ mixin _$CarrinhoStore on _CarrinhoStoreBase, Store {
   );
 
   @override
-  void adicionarPrdouto(Produto novoProduto) {
+  bool adicionarPrdouto(Produto novoProduto) {
     final _$actionInfo = _$_CarrinhoStoreBaseActionController.startAction(
       name: '_CarrinhoStoreBase.adicionarPrdouto',
     );

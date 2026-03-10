@@ -1,4 +1,5 @@
 import 'package:app_mercado_livre/models/produto.model.dart';
+import 'package:app_mercado_livre/store/carrinho.store.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -111,7 +112,37 @@ class CardProduto extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final deuCerto = carrinhoStoreGlobal.adicionarPrdouto(
+                        itemProduto,
+                      );
+
+                      if (deuCerto) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              "Produto adicionado!",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            backgroundColor: Colors.yellow,
+                            showCloseIcon: true,
+                            closeIconColor: Colors.black,
+                          ),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              "Produto não adicionado!",
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            backgroundColor: Colors.red,
+                            showCloseIcon: true,
+                            closeIconColor: Colors.black,
+                          ),
+                        );
+                      }
+                    },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                       minimumSize: Size.zero, // Arranca as gorduras

@@ -9,10 +9,20 @@ abstract class _CarrinhoStoreBase with Store {
   ObservableList<Produto> listaCarrinho = ObservableList<Produto>();
 
   @action
-  void adicionarPrdouto(Produto novoProduto) {
+  bool adicionarPrdouto(Produto novoProduto) {
+    bool jaExiste = listaCarrinho.any(
+      (produto) => produto.preco == novoProduto.preco,
+    );
+    if (jaExiste) {
+      return false;
+    }
+
     listaCarrinho.add(novoProduto);
+    return true;
   }
 
   @computed
   int get quantidadeProdutos => listaCarrinho.length;
 }
+
+final carrinhoStoreGlobal = CarrinhoStore();

@@ -1,4 +1,7 @@
+import 'package:app_mercado_livre/pages/carrinho.page.dart';
+import 'package:app_mercado_livre/store/carrinho.store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class MercadoLivreAppBar extends StatelessWidget {
   const MercadoLivreAppBar({super.key});
@@ -30,10 +33,21 @@ class MercadoLivreAppBar extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
-                icon: const Badge(
-                  label: Text("0"),
-                  child: Icon(Icons.shopping_cart_outlined),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CarrinhoPage(),
+                    ),
+                  );
+                },
+                icon: Observer(
+                  builder: (_) {
+                    return Badge(
+                      label: Text("${carrinhoStoreGlobal.quantidadeProdutos}"),
+                      child: const Icon(Icons.shopping_cart_outlined),
+                    );
+                  },
                 ),
               ),
             ],
