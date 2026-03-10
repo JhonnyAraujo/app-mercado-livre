@@ -17,6 +17,7 @@ class MercadoLivreAppBar extends StatelessWidget {
             children: [
               Expanded(
                 child: TextField(
+                  key: const Key("inputSearch"),
                   decoration: InputDecoration(
                     prefixIcon: const Icon(Icons.search),
                     prefixIconColor: Colors.black45,

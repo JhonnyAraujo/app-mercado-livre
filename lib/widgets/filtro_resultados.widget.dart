@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FiltroResultados extends StatelessWidget {
-  const FiltroResultados({super.key});
+  final bool carregando;
+  const FiltroResultados({super.key, required this.carregando});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,10 @@ class FiltroResultados extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Text("15 resultados", style: TextStyle(color: Colors.black54)),
+          Text(
+            carregando ? "0 resultados" : "15 resultados",
+            style: const TextStyle(color: Colors.black54),
+          ),
           const Spacer(),
           TextButton.icon(
             onPressed: () {},

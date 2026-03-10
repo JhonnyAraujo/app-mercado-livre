@@ -9,20 +9,39 @@ class CarrinhoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(
+          key: const Key("backBtn"),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: const Text("Carrinho de compras"),
         centerTitle: true,
         backgroundColor: Colors.yellow,
+        shadowColor: Colors.black,
+        elevation: 2,
       ),
       body: Observer(
         builder: (_) {
-          return ListView.builder(
-            itemCount: carrinhoStoreGlobal.quantidadeProdutos,
-            itemBuilder: (context, index) {
-              return Text(
-                "${carrinhoStoreGlobal.listaCarrinho[index].titulo} - ${carrinhoStoreGlobal.listaCarrinho[index].preco}",
-              );
-            },
-          );
+          return carrinhoStoreGlobal.quantidadeProdutos == 0
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        key: const Key("imageCart"),
+                        "assets/images/empty_cart.png",
+                        width: 200,
+                      ),
+                    ],
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: carrinhoStoreGlobal.quantidadeProdutos,
+                  itemBuilder: (context, index) {
+                    return Text(
+                      "${carrinhoStoreGlobal.listaCarrinho[index].titulo} - ${carrinhoStoreGlobal.listaCarrinho[index].preco}",
+                    );
+                  },
+                );
         },
       ),
     );

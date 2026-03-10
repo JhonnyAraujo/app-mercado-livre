@@ -27,6 +27,7 @@ class CardProduto extends StatelessWidget {
               color: Colors.grey[200], // Fundo cinza suave
             ),
             child: Image.asset(
+              key: const Key("productImage"),
               "assets/images/iphone.png",
               width: 170,
               height: 240,
@@ -112,6 +113,7 @@ class CardProduto extends StatelessWidget {
                 Align(
                   alignment: Alignment.bottomRight,
                   child: TextButton(
+                    key: const Key("addProductToCart"),
                     onPressed: () {
                       final deuCerto = carrinhoStoreGlobal.adicionarPrdouto(
                         itemProduto,
